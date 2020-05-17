@@ -23,7 +23,7 @@ $(document).ready(function () {
     }
   });
 
-  $.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
       $('DIV#api_status').css({ 'background-color': '#ff545f' });
       $('DIV#api_status').addClass('available');
@@ -37,7 +37,7 @@ $(document).ready(function () {
     $('.places').empty();
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/api/v1/places_search/',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
       data: dataContent,
       contentType: 'application/json',
       success: function (data, textStatus) {
@@ -79,19 +79,20 @@ $(document).ready(function () {
         }
       }
     });
-  };
+  }
 
   $(':button').click(function () {
-    jsonDict = {};
-    jsonList = [];
+    const jsonDict = {};
+    const jsonList = [];
     for (const am of amenities) {
       jsonList.push(am.id);
     }
     if (jsonList.length === 0) {
       loadPlaces();
     } else {
-      jsonDict['amenities'] = jsonList;
+      jsonDict.amenities = jsonList;
       console.log(JSON.stringify(jsonDict));
-      loadPlaces(JSON.stringify(jsonDict));}
+      loadPlaces(JSON.stringify(jsonDict));
+    }
   });
 });
