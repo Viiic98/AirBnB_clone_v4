@@ -16,7 +16,11 @@ $(document).ready(function () {
     for (const ame of amenities) {
       names.push(ame.name);
     }
-    $('.amenities h4').text(names);
+    if (names[0]) {
+      $('.amenities h4').text(names);
+    } else {
+      $('.amenities h4').html('&nbsp;');
+    }
   });
 
   $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
