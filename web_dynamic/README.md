@@ -23,7 +23,6 @@ This README file contain all the information about every task made
 ### Task 7
 - Span is not exactly in the side that must to be, CSS bug
 - Span click event display the reviews
-    - There is a bug because must to wait the `get` before continue adding another article, then right now when is clicked could show another review article
     - User name is not displayed by the moment (Must be added a function that fetch of users api and return the user name associated to every review)
 
 ### Another bugs

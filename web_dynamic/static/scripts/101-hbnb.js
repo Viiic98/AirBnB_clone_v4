@@ -183,7 +183,7 @@ $(document).ready(function () {
     } else {
       $(this).text('show');
     }
-    $('.reviews ul').toggle();
+    $(this).next().toggle();
   });
   loadPlaces();
 });
