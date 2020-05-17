@@ -1,9 +1,8 @@
 .places {
-    column-count: 2;
-    columns: 30em;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 0 20px;
-    margin-top: 1%;
     margin-bottom: 8%;
 }
 @media only screen and (max-width: 920px)
