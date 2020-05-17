@@ -13,4 +13,4 @@ This README file contain all the information about every task made
 ### Task 3
 
 **BUGS**
-- When the class Available is added to the div doesn't change the background color because CSS id properties have priority over it
+- Now is setting color if API is available or not, but is being added through style attribute using JQuery.css(), is not changing taking in mind the class
