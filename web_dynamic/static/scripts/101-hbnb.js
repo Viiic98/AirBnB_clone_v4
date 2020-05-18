@@ -23,7 +23,7 @@ $(document).ready(function () {
     }
   });
 
-  $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
+  $.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
       $('DIV#api_status').css({ 'background-color': '#ff545f' });
       $('DIV#api_status').addClass('available');
@@ -47,7 +47,7 @@ $(document).ready(function () {
     $('.places').empty();
     $.ajax({
       method: 'POST',
-      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      url: 'http://localhost:5001/api/v1/places_search/',
       data: dataContent,
       contentType: 'application/json',
       success: function (data, textStatus) {
@@ -82,10 +82,17 @@ $(document).ready(function () {
             const user = $('<div class="user"></div>');
             $(user).append('<b>Owner: </b>');
             const reviews = $('<div class="reviews"></div>');
+            const reviewBox = $('<div class="review_box"></div>')
+            $(reviewBox).css('display', 'flex');
+            $(reviewBox).css('justify-content', 'space-between');
+            $(reviewBox).css('padding-right', '20px');
             const titleRev = $('<h2>Reviews</h2>');
             const show = $('<span class="revSpan">show</span>');
+            $(show).css("cursor", "pointer");
+            $(show).hover(function () {$(this).css('opacity', '0.7')}, function () {$(this).css('opacity', 'initial')});
+            $(reviewBox).append(titleRev, show);
             const revList = $('<ul></ul>');
-            $.get('http://0.0.0.0:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
+            $.get('http://localhost:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
               if (textStatus === 'success') {
                 for (const review of data) {
                   const list = $('<li></li>');
@@ -94,7 +101,7 @@ $(document).ready(function () {
                   $(list).append($('<p>' + review.text + '</p>'));
                   $(revList).append(list);
                 }
-                $(reviews).append(titleRev, show, revList);
+                $(reviews).append(reviewBox, revList);
               }
             });
             $(article).append(titleBox, information, user, description, reviews);
@@ -183,7 +190,7 @@ $(document).ready(function () {
     } else {
       $(this).text('show');
     }
-    $(this).next().toggle();
+    $(this).parent().next().toggle();
   });
   loadPlaces();
 });

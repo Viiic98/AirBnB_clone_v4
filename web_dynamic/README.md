@@ -21,7 +21,6 @@ This README file contain all the information about every task made
 - The h4 request is not specific how it should works
 
 ### Task 7
-- Span is not exactly in the side that must to be, CSS bug
 - Span click event display the reviews
     - User name is not displayed by the moment (Must be added a function that fetch of users api and return the user name associated to every review)
 
