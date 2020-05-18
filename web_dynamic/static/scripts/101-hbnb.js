@@ -26,7 +26,7 @@ $(document).ready(function () {
     }
   });
 
-  $.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
       $('DIV#api_status').addClass('available');
       $('DIV#api_status').removeAttr('id');
@@ -50,7 +50,7 @@ $(document).ready(function () {
     $('.places').empty();
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/api/v1/places_search/',
+      url: 'http://0.0.0.0:5001/api/v1/places_search/',
       data: dataContent,
       contentType: 'application/json',
       success: function (data, textStatus) {
@@ -90,7 +90,7 @@ $(document).ready(function () {
             const show = $('<span class="revSpan">show</span>');
             $(reviewBox).append(titleRev, show);
             const revList = $('<ul></ul>');
-            $.get('http://localhost:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
+            $.get('http://0.0.0.0:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
               if (textStatus === 'success') {
                 if (data.length > 0) {
                   for (const review of data) {
@@ -98,7 +98,7 @@ $(document).ready(function () {
                     let userLast;
                     const list = $('<li></li>');
                     const date = dateTranslate(review.updated_at);
-                    $.get('http://localhost:5001/api/v1/users/' + review.user_id, function (user, stat) {
+                    $.get('http://0.0.0.0:5001/api/v1/users/' + review.user_id, function (user, stat) {
                       if (stat === 'success') {
                         userFirst = user.first_name;
                         userLast = user.last_name;
