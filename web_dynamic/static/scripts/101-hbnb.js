@@ -85,7 +85,7 @@ $(document).ready(function () {
             const user = $('<div class="user"></div>');
             $(user).append('<b>Owner: </b>');
             const reviews = $('<div class="reviews"></div>');
-            const reviewBox = $('<div class="review_box"></div>')
+            const reviewBox = $('<div class="review_box"></div>');
             const titleRev = $('<h2>Reviews</h2>');
             const show = $('<span class="revSpan">show</span>');
             $(reviewBox).append(titleRev, show);
