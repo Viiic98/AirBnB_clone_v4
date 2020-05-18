@@ -83,23 +83,26 @@ $(document).ready(function () {
             $(user).append('<b>Owner: </b>');
             const reviews = $('<div class="reviews"></div>');
             const reviewBox = $('<div class="review_box"></div>')
-            $(reviewBox).css('display', 'flex');
-            $(reviewBox).css('justify-content', 'space-between');
-            $(reviewBox).css('padding-right', '20px');
             const titleRev = $('<h2>Reviews</h2>');
             const show = $('<span class="revSpan">show</span>');
-            $(show).css("cursor", "pointer");
-            $(show).hover(function () {$(this).css('opacity', '0.7')}, function () {$(this).css('opacity', 'initial')});
             $(reviewBox).append(titleRev, show);
             const revList = $('<ul></ul>');
             $.get('http://localhost:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
               if (textStatus === 'success') {
                 for (const review of data) {
+                  let userFirst;
+                  let userLast;
                   const list = $('<li></li>');
                   const date = dateTranslate(review.updated_at);
-                  $(list).append($('<h3>From Bob Dylan the ' + date[2] + 'th' + date[1] + date[0] + '</h3>'));
-                  $(list).append($('<p>' + review.text + '</p>'));
-                  $(revList).append(list);
+                  $.get('http://localhost:5001/api/v1/users/' + review.user_id, function (user, stat) {
+                    if (stat === 'success') {
+                      userFirst = user.first_name;
+                      userLast = user.last_name;
+                      $(list).append($('<h3>From ' + userFirst + ' ' + userLast + ' the ' + date[2] + 'th' + date[1] + date[0] + '</h3>'));
+                      $(list).append($('<p>' + review.text + '</p>'));
+                      $(revList).append(list);
+                    }
+                  });
                 }
                 $(reviews).append(reviewBox, revList);
               }
