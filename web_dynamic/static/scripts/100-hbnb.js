@@ -105,6 +105,7 @@ $(document).ready(function () {
   });
 
   const states = [];
+  let stateNames = '';
   $('.locations div ul li :checkbox').unbind().click(function () {
     const state = {};
     const stateId = $(this).data('id');
@@ -117,11 +118,18 @@ $(document).ready(function () {
       const index = states.findIndex(x => x.id === stateId);
       states.splice(index, 1);
     }
-    const names = [];
-    for (const st of states) {
-      names.push(st.name);
+    let names = '';
+    for (let i = 0; i < states.length; i++) {
+      names += states[i].name;
+      if (i + 1 < states.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
+    stateNames = names;
+    if (names) {
+      if (cityNames) {
+        names += ', ' + cityNames;
+      }
       $('.locations h4').text(names);
     } else {
       $('.locations h4').html('&nbsp;');
@@ -129,6 +137,7 @@ $(document).ready(function () {
   });
 
   const cities = [];
+  let cityNames = '';
   $('.locations div ul li ul li :checkbox').unbind().click(function () {
     const city = {};
     const cityId = $(this).data('id');
@@ -141,12 +150,20 @@ $(document).ready(function () {
       const index = cities.findIndex(x => x.id === cityId);
       cities.splice(index, 1);
     }
-    const names = [];
-    for (const ct of cities) {
-      names.push(ct.name);
+    let names = '';
+    for (let i = 0; i < cities.length; i++) {
+      names += cities[i].name;
+      if (i + 1 < cities.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
-      $('.locations h4').text(names);
+    cityNames = names;
+    if (names) {
+      if (stateNames) {
+        $('.locations h4').text(stateNames + ', ' + names);
+      } else {
+        $('.locations h4').text(names);
+      }
     } else {
       $('.locations h4').html('&nbsp;');
     }
