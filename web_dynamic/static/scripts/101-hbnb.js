@@ -12,11 +12,14 @@ $(document).ready(function () {
       const index = amenities.findIndex(x => x.id === amenityId);
       amenities.splice(index, 1);
     }
-    const names = [];
-    for (const ame of amenities) {
-      names.push(ame.name);
+    let names = '';
+    for (let i = 0; i < amenities.length; i++) {
+      names += amenities[i].name;
+      if (i + 1 < amenities.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
+    if (names) {
       $('.amenities h4').text(names);
     } else {
       $('.amenities h4').html('&nbsp;');
@@ -25,10 +28,10 @@ $(document).ready(function () {
 
   $.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
-      $('DIV#api_status').css({ 'background-color': '#ff545f' });
       $('DIV#api_status').addClass('available');
+      $('DIV#api_status').removeAttr('id');
     } else {
-      $('DIV#api_status').css({ 'background-color': '#cccccc' });
+      $('DIV.available').attr('id', 'api_status');
       $('DIV#api_status').removeClass('available');
     }
   });
@@ -89,20 +92,27 @@ $(document).ready(function () {
             const revList = $('<ul></ul>');
             $.get('http://localhost:5001/api/v1/places/' + place.id + '/reviews/', function (data, textStatus) {
               if (textStatus === 'success') {
-                for (const review of data) {
-                  let userFirst;
-                  let userLast;
+                if (data.length > 0) {
+                  for (const review of data) {
+                    let userFirst;
+                    let userLast;
+                    const list = $('<li></li>');
+                    const date = dateTranslate(review.updated_at);
+                    $.get('http://localhost:5001/api/v1/users/' + review.user_id, function (user, stat) {
+                      if (stat === 'success') {
+                        userFirst = user.first_name;
+                        userLast = user.last_name;
+                        $(list).append($('<h3>From ' + userFirst + ' ' + userLast + ' the ' + date[2] + 'th' + date[1] + date[0] + '</h3>'));
+                        $(list).append($('<p>' + review.text + '</p>'));
+                        $(revList).append(list);
+                      }
+                    });
+                  }
+                } else {
                   const list = $('<li></li>');
-                  const date = dateTranslate(review.updated_at);
-                  $.get('http://localhost:5001/api/v1/users/' + review.user_id, function (user, stat) {
-                    if (stat === 'success') {
-                      userFirst = user.first_name;
-                      userLast = user.last_name;
-                      $(list).append($('<h3>From ' + userFirst + ' ' + userLast + ' the ' + date[2] + 'th' + date[1] + date[0] + '</h3>'));
-                      $(list).append($('<p>' + review.text + '</p>'));
-                      $(revList).append(list);
-                    }
-                  });
+                  const text = $('<p>This place does not have reviews</p>');
+                  $(list).append(text.css('text-align', 'center'));
+                  $(revList).append(list);
                 }
                 $(reviews).append(reviewBox, revList);
               }
@@ -141,6 +151,7 @@ $(document).ready(function () {
   });
 
   const states = [];
+  let stateNames = '';
   $('.locations div ul li :checkbox').unbind().click(function () {
     const state = {};
     const stateId = $(this).data('id');
@@ -153,11 +164,18 @@ $(document).ready(function () {
       const index = states.findIndex(x => x.id === stateId);
       states.splice(index, 1);
     }
-    const names = [];
-    for (const st of states) {
-      names.push(st.name);
+    let names = '';
+    for (let i = 0; i < states.length; i++) {
+      names += states[i].name;
+      if (i + 1 < states.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
+    stateNames = names;
+    if (names) {
+      if (cityNames) {
+        names += ', ' + cityNames;
+      }
       $('.locations h4').text(names);
     } else {
       $('.locations h4').html('&nbsp;');
@@ -165,6 +183,7 @@ $(document).ready(function () {
   });
 
   const cities = [];
+  let cityNames = '';
   $('.locations div ul li ul li :checkbox').unbind().click(function () {
     const city = {};
     const cityId = $(this).data('id');
@@ -177,12 +196,20 @@ $(document).ready(function () {
       const index = cities.findIndex(x => x.id === cityId);
       cities.splice(index, 1);
     }
-    const names = [];
-    for (const ct of cities) {
-      names.push(ct.name);
+    let names = '';
+    for (let i = 0; i < cities.length; i++) {
+      names += cities[i].name;
+      if (i + 1 < cities.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
-      $('.locations h4').text(names);
+    cityNames = names;
+    if (names) {
+      if (stateNames) {
+        $('.locations h4').text(stateNames + ', ' + names);
+      } else {
+        $('.locations h4').text(names);
+      }
     } else {
       $('.locations h4').html('&nbsp;');
     }

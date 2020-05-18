@@ -119,6 +119,7 @@
 .reviews ul {
     list-style: none;
     display: none;
+    padding: 0;
 }
 .reviews ul li h3 {
     font-size: 14px;

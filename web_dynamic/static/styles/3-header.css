@@ -13,6 +13,12 @@ header .logo {
 }
 .available {
     background-color: #ff545f;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: right;
+    margin-top: 15px;
+    margin-right: 30px;
 }
 #api_status {
     background-color: #cccccc;
