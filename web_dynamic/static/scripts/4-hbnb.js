@@ -83,16 +83,16 @@ $(document).ready(function () {
 
   $(':button').click(function () {
     const jsonDict = {};
-    const jsonList = [];
+    jsonDict.amenities = [];
     for (const am of amenities) {
-      jsonList.push(am.id);
+      jsonDict.amenities.push(am.id);
     }
-    if (jsonList.length === 0) {
+    if (jsonDict.amenities.length === 0) {
       loadPlaces();
     } else {
-      jsonDict.amenities = jsonList;
-      console.log(JSON.stringify(jsonDict));
       loadPlaces(JSON.stringify(jsonDict));
     }
   });
+  
+  loadPlaces();
 });
