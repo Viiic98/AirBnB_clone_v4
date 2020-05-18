@@ -23,12 +23,12 @@ $(document).ready(function () {
     }
   });
 
-  $.get('http://0.0.0.0:5001/api/v1/status/', function (data, textStatus) {
+  $.get('http://localhost:5001/api/v1/status/', function (data, textStatus) {
     if (textStatus === 'success') {
-      $('DIV#api_status').css({ 'background-color': '#ff545f' });
       $('DIV#api_status').addClass('available');
+      $('DIV#api_status').removeAttr('id');
     } else {
-      $('DIV#api_status').css({ 'background-color': '#cccccc' });
+      $('DIV.available').attr('id', 'api_status');
       $('DIV#api_status').removeClass('available');
     }
   });
