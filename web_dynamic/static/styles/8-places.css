@@ -60,6 +60,7 @@
     border-radius: 50%;
     align-items: center;
     padding: 2.3%;
+    align-self: center;
 }
 
 .information {
