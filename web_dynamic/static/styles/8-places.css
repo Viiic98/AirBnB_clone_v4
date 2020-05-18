@@ -47,6 +47,7 @@
     margin: 25px 3% 40px 2%;
     max-width: 75%;
     word-wrap: break-word;
+    padding-top: 2%;
 }
 .price_by_night {
     display: flex;
