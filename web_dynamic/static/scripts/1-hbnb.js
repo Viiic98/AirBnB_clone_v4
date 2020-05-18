@@ -12,11 +12,14 @@ $(document).ready(function () {
       const index = amenities.findIndex(x => x.id === amenityId);
       amenities.splice(index, 1);
     }
-    const names = [];
-    for (const ame of amenities) {
-      names.push(ame.name);
+    let names = '';
+    for (let i = 0; i < amenities.length; i++) {
+      names += amenities[i].name;
+      if (i + 1 < amenities.length) {
+        names += ', ';
+      }
     }
-    if (names[0]) {
+    if (names) {
       $('.amenities h4').text(names);
     } else {
       $('.amenities h4').html('&nbsp;');
