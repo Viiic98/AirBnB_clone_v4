@@ -226,5 +226,6 @@ $(document).ready(function () {
     }
     $(this).parent().next().toggle();
   });
+  
   loadPlaces();
 });
