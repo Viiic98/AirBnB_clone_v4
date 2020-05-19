@@ -131,6 +131,8 @@ $(document).ready(function () {
         names += ', ' + cityNames;
       }
       $('.locations h4').text(names);
+    } else if (cityNames) {
+      $('.locations h4').text(cityNames);
     } else {
       $('.locations h4').html('&nbsp;');
     }
@@ -164,6 +166,8 @@ $(document).ready(function () {
       } else {
         $('.locations h4').text(names);
       }
+    } else if (stateNames) {
+      $('.locations h4').text(stateNames);
     } else {
       $('.locations h4').html('&nbsp;');
     }
