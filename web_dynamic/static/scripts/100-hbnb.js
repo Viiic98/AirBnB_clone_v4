@@ -172,5 +172,6 @@ $(document).ready(function () {
       $('.locations h4').html('&nbsp;');
     }
   });
+  
   loadPlaces();
 });
