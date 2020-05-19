@@ -161,7 +161,7 @@ David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twit
 
 Second part of Airbnb: Joann Vuong
 
-Juan Buitrago - [Github](https://github.com/juanfe9118) / [Twitter](https://twitter.com/juanfe9118)\s\s
+Juan Buitrago - [Github](https://github.com/juanfe9118) / [Twitter](https://twitter.com/juanfe9118)<br>
 Victor Arteaga - [Github](https://github.com/Viiic98) / [Twitter](https://twitter.com/Xathovic)
 
 ## License
