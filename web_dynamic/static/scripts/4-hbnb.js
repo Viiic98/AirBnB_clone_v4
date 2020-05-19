@@ -93,6 +93,6 @@ $(document).ready(function () {
       loadPlaces(JSON.stringify(jsonDict));
     }
   });
-  
+
   loadPlaces();
 });
