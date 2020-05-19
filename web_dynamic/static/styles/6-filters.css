@@ -54,7 +54,6 @@ button:hover {
     height: 100%;
     width: 25%;
 }
-
 .popover {
     visibility: hidden;
     width: 100%;
@@ -67,21 +66,17 @@ button:hover {
     scrollbar-width: none;
     max-height: 300px;
 }
-
 .popover::-webkit-scrollbar{
     width: 0px;
 }
-
 .amenities .popover {
     padding: 10px 0;
     margin-left: -5px;
     margin-top: 0%;
 }
-
 .amenities .popover ul{
     margin: 0px;
 }
-
 .locations .popover {
     margin-top: 0%;
 }
@@ -97,13 +92,16 @@ button:hover {
     padding: 4px;
     padding-left: 10px;
 }
-
 .popover ul h2{
-    margin-top: 1.5%;
-    margin-bottom: 5%;
-    margin-left: 0px;
+    margin: 0em;
 }
-
+.popover ul li div {
+    display: flex;
+}
+.popover ul li input {
+    margin-top: 5px;
+    margin-right: 10px;
+}
 .amenities:hover .popover,
 .locations:hover .popover {
     visibility: visible;
